@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const accessSchema = new Schema(
   {
-    accessID: {
+    HerbariumID: {
       type: String,
       required: true,
     },
@@ -11,7 +11,14 @@ const accessSchema = new Schema(
       type: String,
       required: true,
     },
-    location: { type: { type: String }, coordinates: [Number] },
+    latitude: {
+      type: String,
+      required: true,
+    },
+    longitude: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

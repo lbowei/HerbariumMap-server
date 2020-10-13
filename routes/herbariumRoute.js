@@ -9,14 +9,20 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
   const Herbariumname = req.body.Herbariumname;
-  const location = req.body.location;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
 
-  const newHerbarium = new Herbarium({ Herbariumname, location });
+  const newHerbarium = new Herbarium({ Herbariumname, latitude, longitude });
 
-  newHerbarium
-    .save()
-    .then(() => res.json("Herbarium added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+  newHerbarium.save((err, obj) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json({
+      message: "Herbarium added",
+      data: obj,
+    });
+  });
 });
 
 module.exports = router;
