@@ -9,7 +9,6 @@ const Schema = mongoose.Schema;
 //   "longitude":"-81.34342"
 // }
 
-
 const herbariumSchema = new Schema(
   {
     Herbariumname: {
