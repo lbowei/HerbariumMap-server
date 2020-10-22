@@ -10,6 +10,8 @@ router.route("/").get((req, res) => {
 });
 
 // const herbariumID = "5f86504f545d1566bbd389b5";
+
+//get by herbariumID
 router.route("/:id").get((req, res) => {
   const herbariumID = req.params.id
   Access.find()
