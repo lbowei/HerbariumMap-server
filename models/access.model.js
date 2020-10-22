@@ -27,4 +27,3 @@ const accessSchema = new Schema(
 
 const Access = mongoose.model("Access", accessSchema);
 module.exports = Access;
-// loc: { type: "Point", coordinates: [ longitude, latitude ] },
