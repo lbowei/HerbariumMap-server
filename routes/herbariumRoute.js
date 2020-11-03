@@ -10,11 +10,31 @@ router.route("/").get((req, res) => {
 
 //This route is for add herbrium record into database.
 router.route("/add").post((req, res) => {
-  const Herbariumname = req.body.Herbariumname;
-  const latitude = req.body.latitude;
-  const longitude = req.body.longitude;
+  const occid = req.body.occid;
+  const decimalLatitude = req.body.decimalLatitude;
+  const decimalLongitude = req.body.decimalLongitude;
+  const catalogNumber = req.body.catalogNumber;
+  const recordedBy = req.body.recordedBy;
+  const recordNumber = req.body.recordNumber;
+  const eventDate = req.body.eventDate;
+  const country = req.body.country;
+  const stateProvince = req.body.stateProvince;
+  const county = req.body.county;
+  const access = req.body.access;
 
-  const newHerbarium = new Herbarium({ Herbariumname, latitude, longitude });
+  const newHerbarium = new Herbarium({
+    occid,
+    decimalLatitude,
+    decimalLongitude,
+    catalogNumber,
+    recordedBy,
+    recordNumber,
+    eventDate,
+    country,
+    stateProvince,
+    county,
+    access,
+  });
 
   newHerbarium.save((err, obj) => {
     if (err) {
@@ -28,3 +48,5 @@ router.route("/add").post((req, res) => {
 });
 
 module.exports = router;
+
+
