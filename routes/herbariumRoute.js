@@ -20,7 +20,7 @@ router.route("/add").post((req, res) => {
   const country = req.body.country;
   const stateProvince = req.body.stateProvince;
   const county = req.body.county;
-  const access = req.body.access;
+  const access = req.body.Access;
 
   const newHerbarium = new Herbarium({
     occid,

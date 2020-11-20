@@ -8022,6 +8022,7 @@ for (let i = 0; i < data.length; i++) {
     eventDate: data[i].eventDate,
     country: data[i].country,
     stateProvince: data[i].stateProvince,
+    county: data[i].county,
     Access: [
       {
         accessDate: data[i].accessDate,
@@ -8054,6 +8055,7 @@ for (let i = 0; i < data.length; i++) {
       eventDate: data[i].eventDate,
       country: data[i].country,
       stateProvince: data[i].stateProvince,
+      county: data[i].county,
 
       Access: [
         {
@@ -8072,44 +8074,39 @@ for (let i = 0; i < data.length; i++) {
 
 console.log(herbariumData);
 
-
-
 const { MongoClient } = require("mongodb");
- 
-// Replace the following with your Atlas connection string                                                                                                                                        
+
+// Replace the following with your Atlas connection string
 const url =
   "mongodb+srv://longbo:weilongbo.98@cluster0.3drao.gcp.mongodb.net/accessrecord?retryWrites=true&w=majority";
 const client = new MongoClient(url);
- 
- // The database to use
- const dbName = "accessrecord";
-                      
- async function run() {
-    try {
-         await client.connect();
-         console.log("Connected correctly to server");
-         const db = client.db(dbName);
 
-         // Use the collection "people"
-         const col = db.collection("herbaria");
+// The database to use
+const dbName = "accessrecord";
 
-         // Construct a document                                                                                                                                                              
-         let personDocument  = herbariumData
+async function run() {
+  try {
+    await client.connect();
+    console.log("Connected correctly to server");
+    const db = client.db(dbName);
 
-         // Insert a single document, wait for promise so we can read it back
-         const p = await col.insertMany(personDocument);
-         // Find one document
-         const myDoc = await col.findOne();
-         // Print to the console
-         console.log(myDoc);
+    // Use the collection "people"
+    const col = db.collection("herbaria");
 
-        } catch (err) {
-         console.log(err.stack);
-     }
- 
-     finally {
-        await client.close();
-    }
+    // Construct a document
+    let personDocument = herbariumData;
+
+    // Insert a single document, wait for promise so we can read it back
+    const p = await col.insertMany(personDocument);
+    // Find one document
+    const myDoc = await col.findOne();
+    // Print to the console
+    console.log(myDoc);
+  } catch (err) {
+    console.log(err.stack);
+  } finally {
+    await client.close();
+  }
 }
 
 run().catch(console.dir);

@@ -36,3 +36,6 @@ app.use("/access", accessRouter);
 app.listen(port, () => {
   console.log("server is runnning on");
 });
+
+
+module.exports = app
